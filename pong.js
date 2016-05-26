@@ -1,21 +1,43 @@
 var canvas;
 var canvasContext;
 var ballX = 50;
+var ballSpeedX = 5;
 
 window.onload = function() {
 	canvas = document.getElementById('gameCanvas');
 	canvasContext = canvas.getContext('2d');
-	canvasContext.fillStyle = 'black';
-	canvasContext.fillRect(0, 0, canvas.width, canvas.height);
-	setInterval(drawEverything, 50);
+	
+	var framesPerSecond = 30;
+	setInterval(function() {
+			moveEverything();
+			drawEverything();	
+		}, 1000/framesPerSecond);
+
+};
+
+//function to reverse ball direction
+function moveEverything() {
+	ballX = ballX + ballSpeedX;
+	if(ballX < 0) {
+		ballSpeedX = -ballSpeedX;
+	}
+	if(ballX > canvas.width) {
+		ballSpeedX = -ballSpeedX;
+	}
 }
 
 function drawEverything() {
-	ballX = ballX + 5;
-	canvasContext.fillStyle = 'black';
-	canvasContext.fillRect(0,0,canvas.width,canvas.height);
-	canvasContext.fillStyle = 'white';
-	canvasContext.fillRect(225,210,200,200);
-	canvasContext.fillStyle = 'red';
-	canvasContext.fillRect(ballX,100,10,10);
+	// next line blanks out the screen with black color
+	colorRect(0,0,canvas.width,canvas.height,'black');
+
+	// this is left player paddle
+	colorRect(0,210,10,100,'white');
+
+	// next line draws the ball
+	colorRect(ballX,100,10,10,'red');
+}
+
+function colorRect(leftX,topY, width,height, drawColor) {
+	canvasContext.fillStyle = drawColor;
+	canvasContext.fillRect(leftX,topY, width,height);
 }
