@@ -2,6 +2,8 @@ var canvas;
 var canvasContext;
 var ballX = 50;
 var ballSpeedX = 5;
+var ballY = 10;
+var ballSpeedY = 4;
 
 window.onload = function() {
 	canvas = document.getElementById('gameCanvas');
@@ -18,11 +20,19 @@ window.onload = function() {
 //function to reverse ball direction
 function moveEverything() {
 	ballX = ballX + ballSpeedX;
+	ballY = ballY + ballSpeedY;
+	
 	if(ballX < 0) {
 		ballSpeedX = -ballSpeedX;
 	}
 	if(ballX > canvas.width) {
 		ballSpeedX = -ballSpeedX;
+	}
+	if(ballY < 0) {
+		ballSpeedY = -ballSpeedY;
+	}
+	if(ballY > canvas.height) {
+		ballSpeedY = -ballSpeedY;
 	}
 }
 
@@ -34,7 +44,7 @@ function drawEverything() {
 	colorRect(0,210,10,100,'white');
 
 	// next line draws the ball
-	colorCircle(ballX, 150, 10, 'white');
+	colorCircle(ballX, ballY, 10, 'white');
 }
 
 function colorCircle(centerX, centerY, radius, drawColor) {
