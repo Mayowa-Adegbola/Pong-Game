@@ -4,20 +4,37 @@ var ballX = 50;
 var ballSpeedX = 5;
 var ballY = 10;
 var ballSpeedY = 4;
+var paddle1Y = 250;
+const PADDLE_HEIGHT = 100;
+
+function calculateMousePos(evt) {
+	var rect = canvas.getBoundingClientRect();
+	var root = document.documentElement;
+	var mouseX = evt.clientX - rect.left - root.scrollLeft;
+	var mouseY = evt.clientY - rect.top - root.scrollTop;
+	return {
+		x:mouseX,
+		y:mouseY
+	};
+}
 
 window.onload = function() {
 	canvas = document.getElementById('gameCanvas');
 	canvasContext = canvas.getContext('2d');
-	
+
 	var framesPerSecond = 30;
 	setInterval(function() {
 			moveEverything();
 			drawEverything();	
 		}, 1000/framesPerSecond);
 
-};
+	canvas.addEventListener('mousemove',
+		function(evt) {
+			var mousePos = calculateMousePos(evt);
+			paddle1Y = mousePos.y - (PADDLE_HEIGHT/2);
+		});
+}
 
-//function to reverse ball direction
 function moveEverything() {
 	ballX = ballX + ballSpeedX;
 	ballY = ballY + ballSpeedY;
@@ -41,7 +58,7 @@ function drawEverything() {
 	colorRect(0,0,canvas.width,canvas.height,'black');
 
 	// this is left player paddle
-	colorRect(0,210,10,100,'white');
+	colorRect(0,paddle1Y,10,PADDLE_HEIGHT,'white');
 
 	// next line draws the ball
 	colorCircle(ballX, ballY, 10, 'white');
