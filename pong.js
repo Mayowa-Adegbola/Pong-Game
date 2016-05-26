@@ -27,14 +27,21 @@ function moveEverything() {
 }
 
 function drawEverything() {
-	// next line blanks out the screen with black color
+	// next line blanks out the screen with black
 	colorRect(0,0,canvas.width,canvas.height,'black');
 
 	// this is left player paddle
 	colorRect(0,210,10,100,'white');
 
 	// next line draws the ball
-	colorRect(ballX,100,10,10,'red');
+	colorCircle(ballX, 150, 10, 'white');
+}
+
+function colorCircle(centerX, centerY, radius, drawColor) {
+	canvasContext.fillStyle = drawColor;
+	canvasContext.beginPath();
+	canvasContext.arc(centerX, centerY, radius, 0,Math.PI*2,true);
+	canvasContext.fill();
 }
 
 function colorRect(leftX,topY, width,height, drawColor) {
