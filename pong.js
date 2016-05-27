@@ -7,7 +7,7 @@ var ballSpeedY = 1;
 
 var player1Score = 0;
 var player2Score = 0;
-const WINNING_SCORE = 11;
+const WINNING_SCORE = 7;
 
 var showingWinScreen = false;
 
@@ -57,9 +57,9 @@ function ballReset() {
 function computerMovement() {
 	var paddle2YCenter = paddle2Y + (PADDLE_HEIGHT/2);
 	if(paddle2YCenter < ballY - 35) {
-		paddle2Y = paddle2Y + 6;
+		paddle2Y = paddle2Y + 2;
 	} else if(paddle2YCenter > ballY + 35) {
-		paddle2Y = paddle2Y - 6;
+		paddle2Y = paddle2Y - 2;
 	}
 }
 
@@ -125,6 +125,7 @@ function drawEverything() {
 
 		if(player1Score >= WINNING_SCORE) {
 			;
+			canvasContext.font = "50px serif"
 			canvasContext.fillText("You won!", 250, 200);
 		} else if(player2Score >= WINNING_SCORE) {
 			canvasContext.font = "50px serif"
