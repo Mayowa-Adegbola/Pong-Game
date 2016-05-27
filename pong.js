@@ -18,8 +18,9 @@ const PADDLE_HEIGHT = 100;
 var collision = null;
 var finish = null;
 
+//starts game only after all other assests have been loaded
 window.onload = function() {
-	canvas = document.getElementById('gameCanvas');
+    canvas = document.getElementById('gameCanvas');
 	canvasContext = canvas.getContext('2d');
 	collision = document.getElementById("collide");
 	finish = document.getElementById("finish");
@@ -40,6 +41,7 @@ window.onload = function() {
 		});
 }
 
+//resets the ball to the center
 function ballReset() {
 	if(player1Score >= WINNING_SCORE ||
 		player2Score >= WINNING_SCORE) {
@@ -54,6 +56,7 @@ function ballReset() {
 	ballY = canvas.height/2;
 }
 
+//create computer paddle's motion
 function computerMovement() {
 	var paddle2YCenter = paddle2Y + (PADDLE_HEIGHT/2);
 	if(paddle2YCenter < ballY - 35) {
@@ -63,6 +66,7 @@ function computerMovement() {
 	}
 }
 
+//move the ball and paddles
 function moveEverything() {
 	if(showingWinScreen) {
 		return;
@@ -110,12 +114,14 @@ function moveEverything() {
 	}
 }
 
+//draws the net 
 function drawNet() {
 	for(var i=0;i<canvas.height;i+=40) {
 		colorRect(canvas.width/2-1,i,2,20,'white');
 	}
 }
 
+//draws the ball and paddles
 function drawEverything() {
 	// next line blanks out the screen with black
 	colorRect(0,0,canvas.width,canvas.height, "#0a181c");
@@ -136,6 +142,7 @@ function drawEverything() {
 		return;
 	}
 
+  //ensures net is drawn before  paddles and ball
 	drawNet();
 
 	// this is left player paddle
@@ -151,6 +158,7 @@ function drawEverything() {
 	canvasContext.fillText(player2Score, canvas.width-100, 100);
 }
 
+//draws a circle
 function colorCircle(centerX, centerY, radius, drawColor, fontType) {
 	canvasContext.fillStyle = drawColor;
 	canvasContext.beginPath();
@@ -158,11 +166,13 @@ function colorCircle(centerX, centerY, radius, drawColor, fontType) {
 	canvasContext.fill();
 }
 
+//draws a rectangle
 function colorRect(leftX,topY, width,height, drawColor) {
 	canvasContext.fillStyle = drawColor;
 	canvasContext.fillRect(leftX,topY, width,height);
 }
 
+//calculates mouse position
 function calculateMousePos(evt) {
 	var rect = canvas.getBoundingClientRect();
 	var root = document.documentElement;
