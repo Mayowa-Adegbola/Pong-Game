@@ -9,7 +9,7 @@ This app is a recreation of the classical Pong game by Atari Inc.
 
 ## Instructions
 
-1. Visit http://pong.abdulmujeebjamiu.com/
+1. Visit http://mayowa-adegbola.github.io/
 2. Play till your fingers are numb!
 
 ## Credits
