@@ -126,7 +126,7 @@ function drawEverything() {
 		if(player1Score >= WINNING_SCORE) {
 			;
 			canvasContext.font = "50px serif"
-			canvasContext.fillText("You won!", 250, 200);
+			canvasContext.fillText("You won!", 300, 200);
 		} else if(player2Score >= WINNING_SCORE) {
 			canvasContext.font = "50px serif"
 			canvasContext.fillText("Computer won!", 250, 200);
