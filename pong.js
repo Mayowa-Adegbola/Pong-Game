@@ -105,11 +105,7 @@ function moveEverything() {
 		}
 	}
 
-	if(ballY < 0) {
-		ballSpeedY = -ballSpeedY;
-	}
-
-	if(ballY > canvas.height) {
+	if(ballY < 0 || ballY > canvas.height) {
 		ballSpeedY = -ballSpeedY;
 	}
 }
