@@ -5,7 +5,14 @@ This app is a recreation of the classical Pong game by Atari Inc.
 ## Functionalities
 
 1. Responsive ball control
-2. Computer Opponent
+2. Intelligent Computer Opponent
+
+## Dependencies
+
+1. HTML5
+2. Materialize Framework
+3. JQuery JS library (required by Materialize Framework)
+
 
 ## Instructions
 
